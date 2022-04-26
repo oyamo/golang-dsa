@@ -1,19 +1,24 @@
 package main
 
 import (
-	"dsa-golang/stack"
+	"dsa-golang/hashmap"
 	"fmt"
 )
 
 func main() {
-	s := stack.Stack[int]{}
+	h := hashmap.NewHashMap[int](16, .75)
 
-	for i := 0; i < 10; i++ {
-		s.Append(i)
+	for i := 0; i < 20; i++ {
+		h.Put(fmt.Sprintf("key_%d", i), i)
 	}
 
-	fmt.Println(s.Pop().Value)
-	fmt.Println(s.Pop().Value)
-	fmt.Println(s.Pop().Value)
+	for i := 0; i < 16; i++ {
+		key := fmt.Sprintf("key_%d", i)
+		f, v := h.Get(key)
+		fmt.Println(f, v)
+	}
+
+	fmt.Println(h.Keys())
+	fmt.Println(len(h.Keys()))
 
 }
