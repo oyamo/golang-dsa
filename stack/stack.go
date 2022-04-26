@@ -21,6 +21,8 @@ func (s *Stack[T]) Append(value T) {
 		s.Tail.Next = &Node[T]{Value: value}
 		s.Tail = s.Tail.Next
 	}
+
+	s.Size++
 }
 
 func (s *Stack[T]) Pop() *Node[T] {
